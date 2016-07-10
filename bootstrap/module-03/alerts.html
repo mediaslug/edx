@@ -13,14 +13,9 @@
 
 
 <div class="container">
-    <div class="alert alert-warning alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x
 
-    </button>
 
-        <h2>Sample alert</h2>
-        <div>this is a simple sample alert</div>
-    </div>
+        <div id="success-alert" class="alert alert-success hidden">success</div>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
     <div class="modal-dialog">
@@ -30,11 +25,31 @@
                 <h4 class="modal-title" id="myModal-label">Modal title</h4>
             </div>
             <div class="modal-body">
-                <p>One fine body&hellip;</p>
+               <form role="form" class="form-horizontal">
+                    <div class="form-group has-feedback">
+                        <label for="email" class="control-label col-md-3"> Email:</label>
+                        <div  class="col-md-6">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email" required="required" />
+                            <span class="glyphicon form-control-feedback "></span>
+                        </div>
+
+                   </div>
+                    <div class="form-group">
+                        <label for="twitter" class="control-label col-md-3"> Twitter:</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">@</span>
+                                <input type="text" class="form-control" name="twitter" id="twitter" placeholder="twitter" required="required" />
+                            </div>
+                        </div>
+
+                   </div>
+
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="save" class="btn btn-primary">Register</button>
             </div>
         </div>
     </div>
@@ -48,5 +63,49 @@ gotta launch that modal:
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
+<script>
+    $(function() {
+        $('#save').click(function() {
+            var formValid = true;
+
+            // loop through every input control
+            $('input').each(function() {
+                // find the form group to set our success/error
+                var formGroup = $(this).parents('.form-group');
+
+                // find the glyphicon to show our check or X
+                var glyphicon = formGroup.find('.glyphicon');
+
+                // use the HTML5 checkvalidity function
+                if (this.checkValidity()) {
+                    // show green, remove red
+                    formGroup.addClass('has-success').removeClass('has-error');
+
+                    // show check, remove green
+                    glyphicon.addClass('glyphicon-ok').removeClass('glyphicon-remove');
+                } else {
+                    // show red, remove green
+                    formGroup.addClass('has-error').removeClass('has-success');
+
+                    // show x, remove check
+                    glyphicon.addClass('glyphicon-remove').removeClass('glyphicon-ok');
+
+                    // mark the form as invalid
+                    formValid = false;
+                }
+
+            });
+
+            if (formValid) {
+                // hide modal dialog
+                $('#myModal').modal('hide');
+                // show alert
+                $('#success-alert').removeClass('hidden');
+
+            }
+        });
+    });
+
+</script>
 </body>
 </html>
