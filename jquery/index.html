@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <title>Hello, jQuery</title>
+        <style>
+            body {
+                font-size: 18px;
+            }
+            div {
+                margin-top: 1em;
+            }
+            .parent {
+                margin-left: .8em;
+            }
+
+            .child {
+                margin-left:  1.6em;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <h1> Foo </h1>
+        <h1 class="custom"> Bar </h1>
+        <h1 custom="banner"> Yadda </h1>
+        <p  custom="banner"> This is a paragraph </p>
+        <header>
+            <h1>H1, Inside the header</h1>
+            <div>
+                <h1>H1, Inside the header, inside a div </h1>
+
+            </div>
+
+
+        </header>
+
+        <nav id="navigation">
+            <ul>
+                <li><a href="http://www.microsoft.com">Microsoft</a></li>
+                <li><a href="http://www.adventure-works.com">AdventureWorks</a></li>
+                <li><a href="register">Register</a></li>
+            </ul>
+        </nav>
+
+        <hr />
+        <h2>Parent/Chidren Examples</h2>
+
+        <div id="target" style="color:black">
+            Grandparent
+            <div style="color:black" class = "parent">
+                - Parent
+                <div style="color:black" class = "child">- First Child</div>
+                <div style="color:black" class = "child" id="demo"> - Second Child</div>
+                <div class="demo child" style="color:black" class = "child"> - Third Child</div>
+
+            </div>
+
+        </div>
+
+        <hr />
+
+        <h2>Sibling Examples</h2>
+        <div style="color:black"> First </div>
+        <div style="color:black"> Second </div>
+        <div style="color:black"> Third </div>
+        <div style="color:black" id="target"> Forth (Target)</div>
+        <div style="color:black"> Fifth </div>
+        <div style="color:black"> Sixth </div>
+        <div style="color:black"> Seventh </div>
+
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" />
+            <div id="name-error"></div>
+        </div>
+
+        <label for="provide-address">Provide address?</label>
+        <input type="checkbox" id="provide-address" />
+
+        <label for="street">Street:</label>
+        <input type="text" id="street" disabled="true" />
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" disabled="true" />
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="js/jquery.js"></script>
+        <script>
+            $(function() {
+                // will execute with the page is ready
+
+                // examples with css selectors
+                $('[custom="banner"]').text("Arbitrary atrribute selector")
+                // descendent selector
+                $('header  h1').text('descendent selector');
+
+                // parent child selector
+                $('header > h1').text('parent child selector');
+
+                // select a specific id and change the attribute
+                //$("#target").attr('style', 'color:red')
+
+                /* MOVING DOWN THE CHAIN (children) */
+                // select a specific id and change the attribute
+                //  $("#target").children().attr('style', 'color:blue')
+
+                // find will look through all children, but it takes an argument.
+                // find always needs a selector. to get all, use *
+
+                //    $("#target").find('.demo').attr('style', 'color:green')
+
+                /* MOVING UP THE CHAIN (parents) */
+                $('#demo').parent().attr('style', 'color:yellow');
+
+                $('#demo').parents().attr('style', 'color:green');
+
+
+                /* SELECTING SIBLINGS  */
+                $('name').next().text('error message');
+                // in this example we grab the element and assign it to a variable.
+
+
+                var currentInput = $('name');
+                // text allows you to modify the text in an element
+                curentInput.next().text('error message');
+
+
+                // The attr method is used to set (or read) an attribute
+                // The first parameter is the name of the attribute, the second is the value to set
+
+                // Since we only need input elements, we'll use the name of the tag as the filter
+                $('#provide-address').nextAll('input').attr('disabled', 'true');
+
+
+                // dom selectors
+                // select the nav element by its ID
+                var navigation = $('#navigation');
+
+                // select all a elements with an href that starts with http://
+                navigation.find('a[href^="http://"]')
+            })
+
+
+            $(document).ready(function($){
+                // will also execute when the page is ready
+
+            });
+
+        </script>
+    </body>
+</html>
