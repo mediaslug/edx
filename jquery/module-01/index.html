@@ -60,13 +60,13 @@
         <hr />
 
         <h2>Sibling Examples</h2>
-        <div style="color:black"> First </div>
+        <div style="color:black" class="stop"> First </div>
         <div style="color:black"> Second </div>
         <div style="color:black"> Third </div>
-        <div style="color:black" id="target"> Forth (Target)</div>
+        <div style="color:black" id="sibling-target"> Forth (Target)</div>
         <div style="color:black"> Fifth </div>
-        <div style="color:black"> Sixth </div>
-        <div style="color:black"> Seventh </div>
+        <div style="color:black" > Sixth </div>
+        <div style="color:black" class="stop"> Seventh </div>
 
 
         <div>
@@ -75,14 +75,18 @@
             <div id="name-error"></div>
         </div>
 
-        <label for="provide-address">Provide address?</label>
-        <input type="checkbox" id="provide-address" />
+        <form>
+                <label for="provide-address">Provide address?</label>
+                <input type="checkbox" id="provide-address" />
 
-        <label for="street">Street:</label>
-        <input type="text" id="street" disabled="true" />
+                <label for="street">Street:</label>
+                <input type="text" id="street"  />
 
-        <label for="country">Country:</label>
-        <input type="text" id="country" disabled="true" />
+                <label for="country">Country:</label>
+                <input type="text" id="country"  />
+        </form>
+
+
 
 
 
@@ -111,6 +115,8 @@
                 // select a specific id and change the attribute
                 //$("#target").attr('style', 'color:red')
 
+                /* -------------- TRAVERSAL METHODS --------------  */
+
                 /* MOVING DOWN THE CHAIN (children) */
                 // select a specific id and change the attribute
                 //  $("#target").children().attr('style', 'color:blue')
@@ -127,20 +133,43 @@
 
 
                 /* SELECTING SIBLINGS  */
-               // $('#name').next().text('error message');
+
+                // update previous element
+                $('#sibling-target').prev().attr('style', 'color:red');
+
+                // update previous elements
+                $('#sibling-target').prevAll().attr('style', 'color:red');
+
+                // update previous elements until
+                $('#sibling-target').prevUntil('.stop').attr('style', 'color:green');
+
+
+                // update next element
+                $('#sibling-target').next().attr('style', 'color:blue');
+
+                // update previous elements
+                $('#sibling-target').nextAll().attr('style', 'color:blue');
+
+                // update previous elements until
+                $('#sibling-target').nextUntil('.stop').attr('style', 'color:yellow');
+
+
+                // $('#name').next().text('error message');
+
+
+
+
 
                 // in this example we grab the element and assign it to a variable.
                 var currentInput = $('#name');
-               //    console.log(currentInput);
-                // text allows you to modify the text in an element
-                currentInput.next().text('error message via variable');
+                currentInput.next().text('error message');
 
 
                 // The attr method is used to set (or read) an attribute
                 // The first parameter is the name of the attribute, the second is the value to set
 
                 // Since we only need input elements, we'll use the name of the tag as the filter
-                $('#provide-address').nextAll('input').attr('disabled', 'true');
+                //$('#provide-address').nextAll('input').attr('disabled', 'true');
 
 
                 // dom selectors
