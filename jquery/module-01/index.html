@@ -60,13 +60,17 @@
         <hr />
 
         <h2>Sibling Examples</h2>
-        <div style="color:black" class="stop"> First </div>
-        <div style="color:black"> Second </div>
-        <div style="color:black"> Third </div>
-        <div style="color:black" id="sibling-target"> Forth (Target)</div>
-        <div style="color:black"> Fifth </div>
-        <div style="color:black" > Sixth </div>
-        <div style="color:black" class="stop"> Seventh </div>
+
+        <div id="container">
+            <div style="color:black" class="stop"> First </div>
+            <div style="color:black"> Second </div>
+            <div style="color:black"> Third </div>
+            <div style="color:black" id="sibling-target"> Forth (Target)</div>
+            <div style="color:black"> Fifth </div>
+            <div style="color:black" > Sixth </div>
+            <div style="color:black" class="stop"> Seventh </div>
+        </div>
+
 
 
         <div>
@@ -88,12 +92,23 @@
 
 
 
+ <hr />
+        <h2>Selecting Items By Position</h2>
 
 
 
+      <div id="container">
+            <div style="color:black" class="stop"> First </div>
+            <div style="color:black"> Second </div>
+            <div style="color:black"> Third </div>
+            <div style="color:black" id="position-target"> Forth (Target)</div>
+            <div style="color:black"> Fifth </div>
+            <div style="color:black" > Sixth </div>
+            <div style="color:black" class="stop"> Seventh </div>
+        </div>
+        <div id='display'>
 
-
-
+        </div>
 
 
 
@@ -154,11 +169,6 @@
                 $('#sibling-target').nextUntil('.stop').attr('style', 'color:yellow');
 
 
-                // $('#name').next().text('error message');
-
-
-
-
 
                 // in this example we grab the element and assign it to a variable.
                 var currentInput = $('#name');
@@ -172,12 +182,14 @@
                 //$('#provide-address').nextAll('input').attr('disabled', 'true');
 
 
-                // dom selectors
-                // select the nav element by its ID
-                var navigation = $('#navigation');
+                // position selectors
 
-                // select all a elements with an href that starts with http://
-                navigation.find('a[href^="http://"]')
+                var element = $('#position-target');
+                var container = $('#container');
+
+                var indexOfElement = container.children().index(element);
+                $('#display').text('index of the element is: ' + indexOfElement);
+
             })
 
 
