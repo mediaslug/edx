@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Selecting Items By Position</title>
+    </head>
+    <body>
+
+    <h1>Selecting Items By Position</h1>
+
+
+
+      <div id="container2">
+            <div style="color:black" class="stop"> First </div>
+            <div style="color:black"> Second </div>
+            <div style="color:black"> Third </div>
+            <div style="color:black" id="position-target"> Forth (Target)</div>
+            <div style="color:black"> Fifth </div>
+            <div style="color:black" > Sixth </div>
+            <div style="color:black" class="stop"> Seventh </div>
+        </div>
+        <div id='display'>
+
+        </div>
+
+
+
+
+
+        <script src="js/jquery.js"></script>
+        <script>
+            $(function() {
+                // position selectors
+                var element = $('#position-target');
+                var container = $('#container2');
+
+                var indexOfElement = container.children().index(element);
+                $('#display').text('index of the element is: ' + indexOfElement);
+
+                // get returns a DOM object **not** a jQuery object, so i need to convert it
+
+                // so first we grab it
+                var foundElement = container.children().get(indexOfElement);
+                console.log(foundElement);
+
+                // then we convert it to a jquery object by passing it to the jQuery constructor
+                // and then we can manipulate the style attribute
+                var jQueryObject = $(foundElement);
+                jQueryObject.attr('style', 'color:red');
+            })
+
+
+
+
+        </script>
+    </body>
+</html>

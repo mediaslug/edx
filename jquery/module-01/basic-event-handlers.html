@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>Basic Events</title>
+
+    <style>
+        body {
+            font-size: 18px;
+        }
+        div {
+            margin-top: 1em;
+        }
+        .parent {
+            margin-left: .8em;
+        }
+
+        .child {
+            margin-left:  1.6em;
+        }
+
+        .highlight {
+            background-color: #f8efc0;
+            margin-left:  1.6em;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Basic Events</h1>
+
+
+<div id="container">
+
+    <div id="demo" class="foo"> Demo Element</div>
+    <div id="display" class="foo">Another div</div>
+
+</div>
+
+
+
+
+
+
+<script src="js/jquery.js"></script>
+<script>
+    $(function() {
+        // will execute when the page is ready
+        $('div').click(function() {
+            console.log(this.id + " was clicked")
+            // convert that DOM object to a jQuery object and then set the text as a simple example
+            $(this).text('clicked');
+
+        });
+
+        $('.foo').each(function(item) {
+            // item will be a variable that will represent each object
+            console.log(item);
+        });
+
+
+
+    });
+
+</script>
+</body>
+</html>

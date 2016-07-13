@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>DOM Manipulation</title>
+
+    <style>
+        body {
+            font-size: 18px;
+        }
+        div {
+            margin-top: 1em;
+        }
+        .parent {
+            margin-left: .8em;
+        }
+
+        .child {
+            margin-left:  1.6em;
+        }
+
+        .highlight {
+            background-color: #f8efc0;
+            margin-left:  1.6em;
+        }
+
+    </style>
+</head>
+<body>
+<h1>DOM Manipulation</h1>
+
+
+<div id="container">
+    <div style="color:black" > First </div>
+    <div style="color:black"> Second </div>
+    <div style="color:black"> Third </div>
+    <div style="color:darkred" id="target"> Forth (Target)</div>
+    <div style="color:black"> Fifth </div>
+    <div style="color:black" > Sixth </div>
+    <div style="color:black" class="stop"> Seventh </div>
+</div>
+
+
+<div id="demo-div"> </div>
+
+
+
+<script src="js/jquery.js"></script>
+<script>
+    $(function() {
+        var target = $('#target');
+        target.addClass('highlight');
+      //  $('#target').removeClass('highlight');
+
+        // how read an attribute value
+        console.log(target.attr('style'));
+
+        // remove and attribute value
+        target.removeAttr('style');
+        console.log(target.attr('style'));
+
+        // modifying content
+
+        // setting text or html
+        $('#demo-div').text("foo");
+        $('#demo-div').html("<h1>foo</h1>");
+
+
+        // retrieving text or html
+        console.log($('#demo-div').text());
+        console.log($('#demo-div').html());
+
+
+    });
+
+</script>
+</body>
+</html>
