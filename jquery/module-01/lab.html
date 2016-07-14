@@ -18,13 +18,18 @@
             padding: .1em;
         }
 
+
+        /* switched the order of these two declarations to get lab to work */
+        .rating-chosen {
+            background-color: green;
+        }
+
         .rating-hover {
             background-color: yellow;
         }
 
-        .rating-chosen {
-            background-color: green;
-        }
+
+
     </style>
 </head>
 <body>
@@ -44,8 +49,26 @@
 
 <script>
     // your answer would go here
+    var selectedCircles;
+    $('div.rating-circle').hover(function() {
+        $(this).addClass('rating-hover');
+        $(this).prevAll().addClass('rating-hover');
 
-    $('div')
-</script>
+    })
+
+    $('div.rating-circle').mouseout(function() {
+        $(this).removeClass('rating-hover');
+        $(this).prevAll().removeClass('rating-hover');
+
+    })
+
+    $('div.rating-circle').click(function() {
+        $(this).addClass('rating-chosen');
+        $(this).prevAll().addClass('rating-chosen');
+        $(this).nextAll().removeClass('rating-chosen');
+
+    })
+
+    </script>
 </body>
 </html>
